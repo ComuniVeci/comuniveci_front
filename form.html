@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear solicitud de post</title>
+</head>
+<body>
+    <h1>📢 Crear nueva solicitud de publicación</h1>
+    <form id="postForm">
+        <label>Título:<br />
+        <input type="text" name="title" required />
+        </label><br />
+
+        <label>Descripción:<br />
+        <textarea name="description" required></textarea>
+        </label><br />
+
+        <label>Latitud:<br />
+        <input type="number" name="latitude" step="any" required />
+        </label><br />
+
+        <label>Longitud:<br />
+        <input type="number" name="longitude" step="any" required />
+        </label><br />
+
+        <label>Dirección:<br />
+        <input type="text" name="address" required />
+        </label><br />
+
+        <label>Correo de contacto:<br />
+        <input type="email" name="contact_email" required />
+        </label><br />
+
+        <label>Imágenes (URLs, separadas por coma):<br />
+        <input type="text" name="images" />
+        </label><br /><br />
+
+        <button type="submit">Enviar solicitud</button>
+    </form>
+
+    <div id="response" style="margin-top: 1em;"></div>
+
+    <script src="js/form.js"></script>
+</body>
+</html>
