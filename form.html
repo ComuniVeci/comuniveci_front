@@ -1,45 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear solicitud de post</title>
+    <title>Solicitud de Publicación - ComuniVeci</title>
+    <link rel="stylesheet" href="css/form.css">
 </head>
-<body>
-    <h1>📢 Crear nueva solicitud de publicación</h1>
-    <form id="postForm">
-        <label>Título:<br />
-        <input type="text" name="title" required />
-        </label><br />
+<body class="form-body">
+    <header class="form-header">
+        <h1>Solicitud de Publicación</h1>
+    </header>
 
-        <label>Descripción:<br />
-        <textarea name="description" required></textarea>
-        </label><br />
+    <main class="form-container">
+        <form id="postForm" class="post-form">
+            <div class="form-group">
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
 
-        <label>Latitud:<br />
-        <input type="number" name="latitude" step="any" required />
-        </label><br />
+            <div class="form-group">
+                <label for="description">Descripción:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
 
-        <label>Longitud:<br />
-        <input type="number" name="longitude" step="any" required />
-        </label><br />
+            <div class="form-group">
+                <label for="latitude">Latitud:</label>
+                <input type="number" step="any" id="latitude" name="latitude" required>
+            </div>
 
-        <label>Dirección:<br />
-        <input type="text" name="address" required />
-        </label><br />
+            <div class="form-group">
+                <label for="longitude">Longitud:</label>
+                <input type="number" step="any" id="longitude" name="longitude" required>
+            </div>
 
-        <label>Correo de contacto:<br />
-        <input type="email" name="contact_email" required />
-        </label><br />
+            <div class="form-group">
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
 
-        <label>Imágenes (URLs, separadas por coma):<br />
-        <input type="text" name="images" />
-        </label><br /><br />
+            <div class="form-group">
+                <label for="contact_email">Correo de Contacto:</label>
+                <input type="email" id="contact_email" name="contact_email" required>
+            </div>
 
-        <button type="submit">Enviar solicitud</button>
-    </form>
+            <div class="form-group">
+                <label for="images">Imágenes (URLs separadas por coma):</label>
+                <input type="text" id="images" name="images">
+            </div>
 
-    <div id="response" style="margin-top: 1em;"></div>
+            <button type="submit" class="submit-button">Enviar Solicitud</button>
+            <div id="response" class="response-message"></div>
+        </form>
+
+    </main>
 
     <script src="js/form.js"></script>
 </body>
