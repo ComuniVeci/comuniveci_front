@@ -16,23 +16,26 @@ document.getElementById("postForm").addEventListener("submit", async function (e
 
     try {
         const response = await fetch("http://localhost:8000/api/posts/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
         });
 
         const result = await response.json();
         const msgDiv = document.getElementById("response");
 
         if (response.ok) {
-        msgDiv.innerHTML = `<strong style="color:green">✅ Solicitud enviada correctamente</strong>`;
-        form.reset();
+            msgDiv.classList.remove('error');
+            msgDiv.innerHTML = `<strong>✅ Solicitud enviada correctamente</strong>`;
+            form.reset();
         } else {
-        msgDiv.innerHTML = `<strong style="color:red">❌ Error:</strong> ${result.detail || "Error desconocido"}`;
+            msgDiv.classList.add('error');
+            msgDiv.innerHTML = `<strong>❌ Error:</strong> ${result.detail || "Error desconocido"}`;
         }
     } catch (err) {
+        msgDiv.classList.add('error');
         document.getElementById("response").innerHTML =
         `<strong style="color:red">❌ Error de conexión:</strong> ${err}`;
     }

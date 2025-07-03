@@ -12,6 +12,8 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+let markers = {};
+
 // Obtener los posts aprobados desde map-service
 async function cargarPostsAprobados() {
     try {
@@ -19,16 +21,50 @@ async function cargarPostsAprobados() {
         const posts = await res.json();
 
         posts.forEach(post => {
-        const marker = L.marker([post.latitude, post.longitude]).addTo(map);
-        marker.bindPopup(`
-            <strong>${post.title}</strong><br>
-            ${post.address}
-        `);
+            const marker = L.marker([post.latitude, post.longitude]).addTo(map);
+            marker.bindPopup(`
+                <strong>${post.title}</strong><br>
+                ${post.address}
+            `);
+
+            markers[post.id] = marker;
+
+            agregarPostALista(post);
+        
         });
     } catch (err) {
         console.error("Error al cargar los posts aprobados:", err);
         alert("No se pudieron cargar los posts aprobados desde el mapa.");
     }
+}
+
+function agregarPostALista(post) {
+    const listContainer = document.getElementById("postList");
+    const postItem = document.createElement("div");
+    postItem.classList.add("post-item");
+    postItem.innerHTML = `
+        <h3>${post.title}</h3>
+        <p><strong>Dirección:</strong> ${post.address}</p>
+        <p><strong>Descripción:</strong> ${post.description}</p>
+    `;
+
+    postItem.addEventListener("click", () => {
+        // Centrar el mapa con animación
+        map.flyTo([post.latitude, post.longitude], 16, { duration: 1.2 });
+
+        // Abrir el popup después de un pequeño retraso para que se sincronice con el vuelo
+        setTimeout(() => {
+            markers[post.id].openPopup();
+        }, 1200);
+
+        // Scroll automático para mostrar el mapa completo en la vista
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    listContainer.appendChild(postItem);
 }
 
 cargarPostsAprobados();
