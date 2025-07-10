@@ -5,6 +5,9 @@ Este frontend es una interfaz sencilla en HTML, CSS y JavaScript puro (sin frame
 - 📝 Enviar solicitudes de publicación a post-service.
 - ✅ Aprobar o rechazar publicaciones desde una vista de administrador.
 - 🗺️ Visualizar publicaciones aprobadas en un mapa interactivo usando Leaflet.js y map-service.
+- 🔐 Iniciar sesión, registrarse y manejar sesiones de usuario autenticadas.
+- 🧑‍💻 Detectar y diferenciar usuarios administradores para restringir acceso al panel administrativo.
+- 📡 Proteger rutas del frontend según si el usuario está autenticado o no.
 
 ---
 
@@ -13,6 +16,7 @@ Este frontend es una interfaz sencilla en HTML, CSS y JavaScript puro (sin frame
 - Tener un navegador moderno (Chrome, Firefox, Edge)
 - Node.js instalado (solo para servir el frontend)
 - Que los servicios backend estén corriendo:
+  - auth-service: http://localhost:8002
   - post-service: http://localhost:8000
   - map-service: http://localhost:8001
 
@@ -41,11 +45,15 @@ serve . -p 8080
 
 4. Abre el navegador en:
 
-- http://localhost:8080/form.html → Formulario para crear publicación
-
-- http://localhost:8080/admin.html → Panel de administrador (aprobar/rechazar)
-
 - http://localhost:8080/index.html → Mapa con publicaciones aprobadas
+
+- http://localhost:8080/form.html → Formulario para crear publicación (requiere login)
+
+- http://localhost:8080/admin.html → Panel de administrador (solo usuarios admin)
+
+- http://localhost:8080/login.html → Página de inicio de sesión
+
+- http://localhost:8080/register.html → Página de registro de usuario
 
 
 ✅ El frontend debe funcionar correctamente si los servicios backend tienen habilitado CORS.
@@ -54,29 +62,47 @@ serve . -p 8080
 
 ```bash
 comuniveci-frontend/
-├── index.html        # Mapa con publicaciones aprobadas
-├── form.html         # Formulario para crear posts
-├── admin.html        # Página de aprobación de publicaciones
-├── css/
-│   └── styles.css    # Estilos globales (opcional)
+├── index.html              # Página principal del mapa
+├── form.html               # Formulario de creación de posts
+├── admin.html              # Panel de administración de publicaciones
+├── login.html              # Página de login
+├── register.html           # Página de registro
 ├── js/
-│   ├── form.js       # Lógica para enviar formulario
-│   ├── admin.js      # Lógica para listar y aprobar/rechazar posts
-│   └── map.js        # Lógica para mostrar el mapa y marcadores
+│   ├── map/
+│   │   ├── map.js              # Mapa de publicaciones aprobadas
+│   ├── form/
+│   │   ├── form.js             # Envío de formulario de post
+│   ├── auth/
+│   │   ├── login.js
+│   │   ├── register.js
+│   │   ├── header.js           # Header dinámico según login y rol
+│   ├── admin/
+│   │   ├── admin.js
+│   └── guards/
+│       └── protect_admin.js
+│       └── protect_authenticated.js
 ```
 
 ## 🌍 Tecnologías utilizadas
 
 - HTML, CSS y JavaScript puro
 
+- Tailwind CSS (vía CDN)
+
 - Leaflet.js para el mapa
 
 - fetch API para consumir los microservicios
+
+- JWT (JSON Web Tokens) para autenticación en frontend
 
 - serve para levantar un servidor local simple
 
 ## 🛡️ Notas de seguridad
 
-- Este frontend no implementa autenticación en el prototipo actual.
+- Las páginas protegidas (form.html y admin.html) validan el token antes de cargar.
 
-- En producción, se recomienda configurar autenticación de usuario y control de acceso para el panel administrativo.
+- El token se almacena en localStorage del navegador.
+
+- El panel de administración solo es accesible para usuarios con rol administrador.
+
+- El campo de correo en el formulario es autocompletado y no editable para asegurar la integridad del autor.
