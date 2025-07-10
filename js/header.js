@@ -8,13 +8,13 @@ async function checkUser() {
     // Usuario no autenticado 
     if (!token) { 
         navLinks.innerHTML = `
-            <a href="/login.html" class="text-blue-600 hover:underline">Iniciar sesión</a>
-            <a href="/register.html" class="text-blue-600 hover:underline">Registrarse</a>
+            <a href="/login.html" class="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded transition">Iniciar sesión</a>
+            <a href="/register.html" class="bg-emerald-400 hover:bg-emerald-600 text-white px-3 py-1 rounded transition">Registrarse</a>
         `;
         return; 
     } 
     
-    try { 
+    try {
         const response = await fetch("http://localhost:8002/api/auth/me", { 
             method: "GET", 
             headers: { 
@@ -29,12 +29,12 @@ async function checkUser() {
         const username = data.username || "Usuario";
 
         navLinks.innerHTML = `
-            <span class="text-gray-700">Hola, ${username}</span>
+            <span class="text-gray-100 font-bold">Hola, ${username}</span>
             ${data.is_admin
-                ? `<a href="/admin.html" class="text-blue-600 hover:underline">Administrar</a>`
-                : `<a href="/profile.html" class="text-blue-600 hover:underline">Perfil</a>`
+                ? `<a href="/admin.html" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded transition">Administrar</a>`
+                : `<a href="/profile.html" class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded transition">Perfil</a>`
             }
-            <button onclick="logout()" class="text-red-600 hover:underline">Cerrar sesión</button>
+            <button onclick="logout()" class="bg-red-400 hover:bg-red-700 text-white px-3 py-1 rounded transition">Cerrar sesión</button>
         `;
     
     } catch (err) { 
@@ -42,7 +42,7 @@ async function checkUser() {
         localStorage.removeItem("token"); 
         // volver a cargar como no autenticado 
         checkUser(); 
-    } 
+    }
 } 
 
 function logout() { 

@@ -41,9 +41,12 @@ async function cargarPostsAprobados() {
 function agregarPostALista(post) {
     const listContainer = document.getElementById("postList");
     const postItem = document.createElement("div");
-    postItem.classList.add("post-item");
+
+    // Clases de Tailwind que replican los estilos anteriores
+    postItem.className = "p-4 border border-gray-300 rounded-lg cursor-pointer transition-colors hover:bg-[#f0e6ff]";
+    
     postItem.innerHTML = `
-        <h3>${post.title}</h3>
+        <h3 class="mb-1 text-violet-400 font-semibold">${post.title}</h3>
         <p><strong>Dirección:</strong> ${post.address}</p>
         <p><strong>Descripción:</strong> ${post.description}</p>
     `;
