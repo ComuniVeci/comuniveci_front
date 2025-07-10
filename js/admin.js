@@ -28,10 +28,14 @@
             <p><strong>Descripción:</strong> ${post.description}</p>
             <p><strong>Dirección:</strong> ${post.address}</p>
             <p><strong>Contacto:</strong> ${post.contact_email}</p>
-            <button onclick="approvePost('${post.id}')">✅ Aprobar</button>
-            <button onclick="rejectPost('${post.id}')">❌ Rechazar</button>
+            <button class="approve-btn" data-id="${post.id}">✅ Aprobar</button>
+            <button class="reject-btn" data-id="${post.id}">❌ Rechazar</button>
             <hr>
             `;
+
+            div.querySelector(".approve-btn").addEventListener("click", () => approvePost(post.id));
+            div.querySelector(".reject-btn").addEventListener("click", () => rejectPost(post.id));
+            
             container.appendChild(div);
         });
     }
