@@ -3,52 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Solicitud de Publicación - ComuniVeci</title>
-    <link rel="stylesheet" href="css/form.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="form-body">
-    <header class="form-header">
-        <h1>Solicitud de Publicación</h1>
+<body class="bg-purple-50 font-sans min-h-screen flex flex-col">
+
+    <header class="bg-violet-500 text-white p-6 flex justify-between items-center shadow">
+        <h1 class="text-2xl font-bold">Solicitud de Publicación</h1>
+        <div class="space-x-3">
+            <a href="/index.html" class="bg-white text-violet-500 font-semibold px-4 py-2 rounded hover:bg-gray-300 transition">
+                Inicio
+            </a>
+            <a href="/profile.html" class="bg-white text-violet-500 font-semibold px-4 py-2 rounded hover:bg-gray-300 transition">
+                Volver al Perfil
+            </a>
+        </div>
     </header>
 
-    <main class="form-container">
-        <form id="postForm" class="post-form">
-            <div class="form-group">
-                <label for="title">Título:</label>
-                <input type="text" id="title" name="title" required>
+    <main class="flex-1 flex justify-center items-center p-6">
+        <form id="postForm" class="bg-white shadow-lg rounded-lg p-8 w-full max-w-xl space-y-4">
+
+            <div>
+                <label for="title" class="block font-semibold mb-1">Título:</label>
+                <input type="text" id="title" name="title" required
+                    class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                >
             </div>
 
-            <div class="form-group">
-                <label for="description">Descripción:</label>
-                <textarea id="description" name="description" required></textarea>
+            <div>
+                <label for="description" class="block font-semibold mb-1">Descripción:</label>
+                <textarea id="description" name="description" required
+                    class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                ></textarea>
             </div>
 
-            <div class="form-group">
-                <label for="latitude">Latitud:</label>
-                <input type="number" step="any" id="latitude" name="latitude" required>
+            <div>
+                <label for="latitude" class="block font-semibold mb-1">Latitud:</label>
+                <input type="number" step="any" id="latitude" name="latitude" required
+                    class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                >
             </div>
 
-            <div class="form-group">
-                <label for="longitude">Longitud:</label>
-                <input type="number" step="any" id="longitude" name="longitude" required>
+            <div>
+                <label for="longitude" class="block font-semibold mb-1">Longitud:</label>
+                <input type="number" step="any" id="longitude" name="longitude" required
+                    class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                >
             </div>
 
-            <div class="form-group">
-                <label for="address">Dirección:</label>
-                <input type="text" id="address" name="address" required>
+            <div>
+                <label for="address" class="block font-semibold mb-1">Dirección:</label>
+                <input type="text" id="address" name="address" required
+                    class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                >
             </div>
 
-            <div class="form-group">
-                <label for="contact_email">Correo de Contacto:</label>
-                <input type="email" id="contact_email" name="contact_email" required>
+            <div>
+                <label for="contact_email" class="block font-semibold mb-1">Correo de Contacto:</label>
+                <input type="email" id="contact_email" name="contact_email" required
+                    class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                >
             </div>
 
-            <div class="form-group">
-                <label for="images">Imágenes (URLs separadas por coma):</label>
-                <input type="text" id="images" name="images">
+            <div>
+                <label for="images" class="block font-semibold mb-1">Imágenes (URLs separadas por coma):</label>
+                <input type="text" id="images" name="images"
+                    class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                >
             </div>
 
-            <button type="submit" class="submit-button">Enviar Solicitud</button>
-            <div id="response" class="response-message"></div>
+            <button type="submit"
+                class="w-full bg-violet-500 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded transition"
+            >Enviar Solicitud</button>
+            <div id="response" class="text-center font-medium mt-2"></div>
         </form>
 
     </main>

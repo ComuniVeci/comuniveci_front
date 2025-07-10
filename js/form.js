@@ -28,17 +28,16 @@
             const msgDiv = document.getElementById("response");
 
             if (response.ok) {
-                msgDiv.classList.remove('error');
-                msgDiv.innerHTML = `<strong>✅ Solicitud enviada correctamente</strong>`;
+                msgDiv.className = "text-green-600 font-semibold text-center";
+                msgDiv.innerHTML = `✅ Solicitud enviada correctamente`;
                 form.reset();
             } else {
-                msgDiv.classList.add('error');
-                msgDiv.innerHTML = `<strong>❌ Error:</strong> ${result.detail || "Error desconocido"}`;
+                msgDiv.className = "text-red-600 font-semibold text-center";
+                msgDiv.innerHTML = `❌ Error: ${result.detail || "Error desconocido"}`;
             }
         } catch (err) {
-            msgDiv.classList.add('error');
-            document.getElementById("response").innerHTML =
-            `<strong style="color:red">❌ Error de conexión:</strong> ${err}`;
+            msgDiv.className = "text-red-600 font-semibold text-center";
+            document.getElementById("response").innerHTML = `❌ Error de conexión: ${err}`;
         }
     });
 })();
