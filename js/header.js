@@ -34,8 +34,10 @@
                     ? `<a href="/admin.html" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded transition">Administrar</a>`
                     : `<a href="/profile.html" class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded transition">Perfil</a>`
                 }
-                <button onclick="logout()" class="bg-red-400 hover:bg-red-700 text-white px-3 py-1 rounded transition">Cerrar sesión</button>
+                <button id="logout-btn" class="bg-red-400 hover:bg-red-700 text-white px-3 py-1 rounded transition">Cerrar sesión</button>
             `;
+
+            document.getElementById("logout-btn").addEventListener("click", logout);
         
         } catch (err) { 
             console.warn("Token inválido o expirado. Eliminando...", err); 
