@@ -1,4 +1,16 @@
-(function() {
+(async function() {
+
+    const token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:8002/api/auth/me", {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const user = await res.json();
+
+    emailField = document.getElementById("contact_email");
+    emailField.value = user.email;
+
     document.getElementById("postForm").addEventListener("submit", async function (e) {
         e.preventDefault();
 
@@ -9,7 +21,7 @@
             latitude: parseFloat(form.latitude.value),
             longitude: parseFloat(form.longitude.value),
             address: form.address.value,
-            contact_email: form.contact_email.value,
+            contact_email: user.email,
             images: form.images.value
             ? form.images.value.split(",").map(url => url.trim())
             : [],
@@ -31,13 +43,16 @@
                 msgDiv.className = "text-green-600 font-semibold text-center";
                 msgDiv.innerHTML = `✅ Solicitud enviada correctamente`;
                 form.reset();
+                // volver a colocar el correo en caso de que reset lo borre
+                emailField.value = user.email;
             } else {
                 msgDiv.className = "text-red-600 font-semibold text-center";
                 msgDiv.innerHTML = `❌ Error: ${result.detail || "Error desconocido"}`;
             }
         } catch (err) {
+            const msgDiv = document.getElementById("response");
             msgDiv.className = "text-red-600 font-semibold text-center";
-            document.getElementById("response").innerHTML = `❌ Error de conexión: ${err}`;
+            msgDiv.innerHTML = `❌ Error de conexión: ${err}`;
         }
     });
 })();
