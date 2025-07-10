@@ -7,7 +7,8 @@
             const posts = await res.json();
             renderPosts(posts);
         } catch (err) {
-            document.getElementById("postList").innerHTML = `<p style="color:red">Error al obtener posts pendientes: ${err}</p>`;
+            document.getElementById("postList").innerHTML = `
+                <p class="text-red-600 font-semibold">Error al obtener posts pendientes: ${err}</p>`;
         }
     }
 
@@ -16,21 +17,23 @@
         container.innerHTML = "";
 
         if (posts.length === 0) {
-            container.innerHTML = "<p>No hay publicaciones pendientes.</p>";
+            container.innerHTML = "<p class='text-center text-gray-700'>No hay publicaciones pendientes.</p>";
             return;
         }
 
         posts.forEach(post => {
             const div = document.createElement("div");
-            div.classList.add("post");
+            div.className = "bg-white shadow-md rounded-lg p-6 border border-gray-200";
+
             div.innerHTML = `
-            <h3>${post.title}</h3>
-            <p><strong>Descripción:</strong> ${post.description}</p>
-            <p><strong>Dirección:</strong> ${post.address}</p>
-            <p><strong>Contacto:</strong> ${post.contact_email}</p>
-            <button class="approve-btn" data-id="${post.id}">✅ Aprobar</button>
-            <button class="reject-btn" data-id="${post.id}">❌ Rechazar</button>
-            <hr>
+                <h3 class="text-xl font-semibold text-violet-500 mb-2">${post.title}</h3>
+                <p class="mb-1"><strong>Descripción:</strong> ${post.description}</p>
+                <p class="mb-1"><strong>Dirección:</strong> ${post.address}</p>
+                <p class="mb-4"><strong>Contacto:</strong> ${post.contact_email}</p>
+                <div class="flex gap-4">
+                    <button class="approve-btn bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded transition" data-id="${post.id}">✅ Aprobar</button>
+                    <button class="reject-btn bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded transition" data-id="${post.id}">❌ Rechazar</button>
+                </div>
             `;
 
             div.querySelector(".approve-btn").addEventListener("click", () => approvePost(post.id));
