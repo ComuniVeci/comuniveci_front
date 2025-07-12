@@ -35,7 +35,12 @@
             });
         } catch (err) {
             console.error("Error al cargar los posts aprobados:", err);
-            alert("No se pudieron cargar los posts aprobados desde el mapa.");
+            const listContainer = document.getElementById("postList");
+            listContainer.innerHTML = `
+                <p class="text-red-600 text-center font-semibold">
+                    ❌ No se pudieron cargar los posts aprobados desde el mapa. Intenta recargar la página.
+                </p>
+            `;
         }
     }
 
