@@ -11,7 +11,7 @@
     <div id="admin-content" class="hidden">
         <header class="bg-violet-500 text-white py-6 text-center shadow">
             <h1 class="text-3xl font-bold">Panel de Administración</h1>
-            <p class="italic mt-1 text-lg">Lista de publicaciones pendientes de aprobación</p>
+            <p class="italic mt-1 text-lg">Resumen y gestión del sistema</p>
         </header>
 
         <a
@@ -21,8 +21,30 @@
             ← Volver al mapa
         </a>
 
-        <main class="max-w-4xl mx-auto px-4 py-8">
-            <div id="postList" class="flex flex-col gap-6"></div>
+        <main class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
+            <!-- Posts pendientes -->
+            <section class="bg-white p-4 rounded-lg shadow max-h-[500px] overflow-y-auto">
+                <h2 class="text-xl font-bold text-violet-700 mb-4">📮 Publicaciones Pendientes</h2>
+                <div id="postList" class="flex flex-col gap-4"></div>
+            </section>
+
+            <!-- Estadísticas -->
+            <section class="bg-white p-4 rounded-lg shadow max-h-[500px] overflow-y-auto">
+                <h2 class="text-xl font-bold text-violet-700 mb-4">📊 Estadísticas</h2>
+                <div id="statistics"></div>
+            </section>
+
+            <!-- Usuarios -->
+            <section class="bg-white p-4 rounded-lg shadow max-h-[500px] overflow-y-auto">
+                <h2 class="text-xl font-bold text-violet-700 mb-4">👥 Usuarios Registrados</h2>
+                <div id="users"></div>
+            </section>
+
+            <!-- Métricas -->
+            <section class="bg-white p-4 rounded-lg shadow max-h-[500px] overflow-y-auto">
+                <h2 class="text-xl font-bold text-violet-700 mb-4">📈 Métricas del Sistema</h2>
+                <pre id="metrics" class="text-sm whitespace-pre-wrap"></pre>
+            </section>
         </main>
     </div>
 
