@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Perfil - ComuniVeci</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-4">
+
+  <div id="profile-container" class="bg-white p-8 rounded-lg shadow-md w-full max-w-md text-center space-y-4">
+    <h1 class="text-2xl font-semibold text-purple-800">👤 Mi Perfil</h1>
+    <p id="username" class="text-gray-700 text-lg"></p>
+    <button onclick="location.href='form.html'" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-4 py-2 rounded transition">
+      Crear publicación
+    </button>
+  </div>
+
+  <script src="js/guards/protect_authenticated.js"></script>
+  <script src="js/profile/profile.js"></script>
+</body>
+</html>
