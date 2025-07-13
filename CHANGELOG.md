@@ -4,6 +4,36 @@ Historial de cambios del módulo de interfaz gráfica de usuario para el prototi
 
 ---
 
+## [1.2.0] - 2025-07-13
+
+### 🎉 Nuevas funcionalidades
+
+- 👤 Se implementó página de perfil de usuario (profile.html):
+  - Muestra el nombre del usuario autenticado.
+  - Permite crear nuevas publicaciones desde allí.
+  - Lista todas las publicaciones creadas por el usuario.
+
+- 📊 Panel de administración (admin.html) ampliado:
+  - Muestra número de posts aprobados, pendientes y total.
+  - Lista básica de usuarios registrados.
+  - Sección para visualizar métricas clave del auth-service.
+
+- 🧪 Se implementaron pruebas automáticas del frontend con Selenium y Pytest:
+  - Test de login exitoso y logout.
+  - Test de registro y redirección.
+  - Test completo del panel de administración (admin.html).
+  - Los tests eliminan automáticamente los usuarios creados para mantener la BD limpia.
+
+- 🧭 El botón "Volver al mapa" se añadió al panel de administración y perfil.
+
+### 🛠️ Cambios internos
+
+- Se añadieron IDs específicos a los divs del panel de administración para facilitar el testing.
+- El manejo de errores en el frontend fue refinado para fallos en los fetch y alertas visuales.
+- Se mejoró la protección de rutas sensibles.
+
+---
+
 ## [1.1.0] - 2025-07-10
 
 ### 🎉 Nuevas funcionalidades

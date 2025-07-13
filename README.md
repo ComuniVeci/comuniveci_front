@@ -8,6 +8,8 @@ Este frontend es una interfaz sencilla en HTML, CSS y JavaScript puro (sin frame
 - 🔐 Iniciar sesión, registrarse y manejar sesiones de usuario autenticadas.
 - 🧑‍💻 Detectar y diferenciar usuarios administradores para restringir acceso al panel administrativo.
 - 📡 Proteger rutas del frontend según si el usuario está autenticado o no.
+- 👤 Ver perfil del usuario autenticado con sus publicaciones.
+- 🧪 Ejecutar pruebas automáticas del frontend con Selenium.
 
 ---
 
@@ -19,6 +21,7 @@ Este frontend es una interfaz sencilla en HTML, CSS y JavaScript puro (sin frame
   - auth-service: http://localhost:8002
   - post-service: http://localhost:8000
   - map-service: http://localhost:8001
+  - admin-service: http://localhost:8003 (opcional pero recomendado)
 
 ---
 
@@ -55,6 +58,8 @@ serve . -p 8080
 
 - http://localhost:8080/register.html → Página de registro de usuario
 
+- http://localhost:8080/profile.html → Perfil del usuario autenticado
+
 
 ✅ El frontend debe funcionar correctamente si los servicios backend tienen habilitado CORS.
 
@@ -67,6 +72,7 @@ comuniveci-frontend/
 ├── admin.html              # Panel de administración de publicaciones
 ├── login.html              # Página de login
 ├── register.html           # Página de registro
+├── profile.html            # Página de perfil de usuario
 ├── js/
 │   ├── map/
 │   │   ├── map.js              # Mapa de publicaciones aprobadas
@@ -76,11 +82,14 @@ comuniveci-frontend/
 │   │   ├── login.js
 │   │   ├── register.js
 │   │   ├── header.js           # Header dinámico según login y rol
+│   ├── profile/
+│   │   ├── profile.js          # Carga del perfil del usuario
 │   ├── admin/
-│   │   ├── admin.js
+│   │   ├── admin.js            # Panel admin: posts, estadísticas, métricas, usuarios
 │   └── guards/
 │       └── protect_admin.js
 │       └── protect_authenticated.js
+
 ```
 
 ## 🌍 Tecnologías utilizadas
@@ -95,14 +104,18 @@ comuniveci-frontend/
 
 - JWT (JSON Web Tokens) para autenticación en frontend
 
-- serve para levantar un servidor local simple
+- erve para levantar un servidor local simple
+
+- Selenium + pytest para pruebas automáticas del frontend
 
 ## 🛡️ Notas de seguridad
 
-- Las páginas protegidas (form.html y admin.html) validan el token antes de cargar.
+- Las páginas protegidas (form.html, admin.html y profile.html) validan el token antes de cargar.
 
 - El token se almacena en localStorage del navegador.
 
 - El panel de administración solo es accesible para usuarios con rol administrador.
 
-- El campo de correo en el formulario es autocompletado y no editable para asegurar la integridad del autor.
+- El campo de correo en el formulario se autocompleta y no es editable para asegurar la integridad del autor.
+
+- El perfil de usuario sólo es accesible si hay sesión activa.
